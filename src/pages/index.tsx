@@ -39,7 +39,7 @@ export default function Home() {
           <h2 className="text-center mt-10 text-2xl max-sm:text-xl">
             Buy articles that will make you trending on GitHub
           </h2>
-          <div className="relative z-50">
+          <div className="relative z-50 flex">
             <button className="mr-5 text-black p-5 max-sm:p-2 rounded-3xl mt-10 bg-[#FDCA00] text-xl max-sm:text-lg hover:bg-[#fde9a7] hover:drop-shadow-aura transition-all">
               Learn the process
             </button>
