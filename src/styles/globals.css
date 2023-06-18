@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+.container {
+  scrollbar-width: thin;
+  scrollbar-color: red rgb(153 102 255 / 0.25);
+}
+
+/* Chrome, Edge, and Safari */
+.container::-webkit-scrollbar {
+  width: 15px;
+}
+
+.container::-webkit-scrollbar-track {
+  background: #0E0A0F;
+  border-radius: 5px;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background-color: #372357;
+  border-radius: 14px;
+  border: 1px solid rgb(153 102 255 / 0.5);
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
