@@ -97,8 +97,7 @@ ol li:before {
   display: block;
   position: absolute;
   left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0;
   background-image: linear-gradient(132.93deg,#d383fc 21.78%,#cb6afb 39.25%,rgba(203,106,251,.2) 86.85%);
   color: transparent;
   background-clip: text;

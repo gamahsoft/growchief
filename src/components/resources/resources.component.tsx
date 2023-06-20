@@ -5,10 +5,10 @@ const ResourcesComponent: FC<{ resources: ReactElement[], title: string }> = (pr
   return (
     <div>
       <div className="flex max-sm:flex-col-reverse mt-28">
-        <div className="flex max-sm:justify-center items-center max-sm:mt-20 flex-1">
+        <div className="flex justify-center items-center max-sm:mt-20 flex-1">
           <img className="w-[200px] wand" src="/library.png" />
         </div>
-        <div>
+        <div className="flex-1">
           <h1 className="text-6xl font-bold bg-clip-text relative z-20 max-sm:text-5xl max-sm:text-center">
             {title}
           </h1>

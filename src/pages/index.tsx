@@ -94,7 +94,7 @@ export default function Home(props: { dev: any; notion: any, faq: any }) {
       <ProcessComponent process={process} title={notion.process_title[0].plain_text} />
       <ResourcesComponent resources={resources} title={notion.resources_title[0].plain_text} />
       <PackagesComponent />
-      <div className="mt-28">
+      <div className="mt-28 mb-28">
         <h1 className="text-center text-6xl max-sm:text-5xl font-bold">FAQ</h1>
         <FaqComponent faq={faq} />
       </div>

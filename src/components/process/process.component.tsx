@@ -17,7 +17,7 @@ const ProcessComponent: FC<{title: string, process: string[]}> = (props) => {
             ))}
           </ol>
         </div>
-        <div className="flex items-center justify-center max-sm:mt-10">
+        <div className="flex flex-1 items-center justify-center max-sm:mt-10">
           <img className="w-[200px] wand" src="/magic-wand.png" />
         </div>
       </div>
