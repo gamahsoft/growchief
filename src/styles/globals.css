@@ -107,3 +107,11 @@ ol li:before {
 .wand {
   filter: drop-shadow(0 0 100px rgba(203,106,251,0.87));
 }
+
+.fc .fc-daygrid-day-number {
+  position: static !important;
+}
+
+.fc-today-button {
+  display: none !important;
+}

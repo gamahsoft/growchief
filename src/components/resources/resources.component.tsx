@@ -1,4 +1,7 @@
-const ResourcesComponent = () => {
+import { FC, ReactElement } from "react";
+
+const ResourcesComponent: FC<{ resources: ReactElement[] }> = (props) => {
+  const { resources } = props;
   return (
     <div>
       <div className="flex max-sm:flex-col-reverse mt-28">
@@ -10,18 +13,15 @@ const ResourcesComponent = () => {
             Resources
           </h1>
           <ol className="space-y-6 mt-10 flex-1">
-            <li className="text-xl" data-number="1.">
-              Crowd.dev interview about the Growth Articles approach
-            </li>
-            <li className="text-xl" data-number="2.">
-              Twitter spaces on building Growth Articles
-            </li>
-            <li className="text-xl" data-number="3.">
-              GitHub20k a large resources to grow your GitHub library
-            </li>
-            <li className="text-xl" data-number="4.">
-              Nevo David{"'"}s latest Growth Articles
-            </li>
+            {resources.map((current, index) => (
+              <li
+                key={String(index)}
+                className="text-xl"
+                data-number={`${index + 1}.`}
+              >
+                {current}
+              </li>
+            ))}
           </ol>
         </div>
       </div>

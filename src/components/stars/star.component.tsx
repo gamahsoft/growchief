@@ -1,9 +1,8 @@
 const StarComponent = () => {
   return (
-    <div className="flex rounded text-sm">
+    <a className="flex rounded text-sm" href={process.env.GITHUB_URL} target="_blank">
       <div
-        className="px-3 flex justify-center items-center flex-1 border border-white/30 rounded rounded-tr-none rounded-br-none"
-        style={{ background: "linear-gradient(180deg, #21262d, #1a1e23 90%)" }}
+        className="bg-gradient-top px-3 flex justify-center items-center flex-1 border border-white/30 rounded rounded-tr-none rounded-br-none hover:bg-grad-blue"
       >
         <svg
           viewBox="0 0 16 16"
@@ -20,7 +19,7 @@ const StarComponent = () => {
         </svg>
         Stars us on GitHub
       </div>
-    </div>
+    </a>
   );
 };
 

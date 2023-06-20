@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Inter } from "next/font/google";
 import StarComponent from "@growchief/components/stars/star.component";
 import FaqComponent from "@growchief/components/faq/faq.component";
 import DevComponent from "@growchief/components/dev/dev.component";
@@ -7,16 +6,46 @@ import ProcessComponent from "@growchief/components/process/process.component";
 import ResourcesComponent from "@growchief/components/resources/resources.component";
 import PackagesComponent from "@growchief/components/packages/packages.component";
 import { loadDevToAnalytics } from "@growchief/helpers/dev.to";
+import {getFaq, notionDbInformation} from "@growchief/helpers/notion";
+import { useMemo } from "react";
+import Link from "next/link";
+export default function Home(props: { dev: any; notion: any, faq: any }) {
+  const { dev, notion, faq } = props;
 
-const inter = Inter({ subsets: ["latin"] });
+  const process = useMemo(() => {
+    return notion.process[0].plain_text.split("\n").filter((f: any) => f);
+  }, []);
 
-export default function Home(props: { dev: any }) {
-  const { dev } = props;
+  const resources = useMemo(() => {
+    return notion.resources.reduce((all: any[], current: any) => {
+      const split = current.text.content.split("\n").filter((f: any) => f);
+
+      for (const text of split) {
+        if (current.text.link) {
+          all.push(
+            <a
+              key={current.text.content}
+              href={current.text.link.url}
+              target="_blank"
+              className="hover:underline"
+            >
+              {text}
+            </a>
+          );
+          continue;
+        }
+        all.push(<>{text}</>);
+      }
+
+      return all;
+    }, []);
+  }, []);
+
   return (
     <div className="mx-auto max-w-[1492px] px-10 flex flex-col w-full">
       <div className="flex flex-col min-h-[100vh] w-full py-4 pb-16">
         <div className="flex">
-          <p className="text-2xl flex-1">GrowChief</p>
+          <Link href="/" className="text-2xl flex-1 bg-top-gradient text-transparent bg-clip-text">GrowChief</Link>
           <StarComponent />
         </div>
         <div className="flex flex-1 flex-col justify-center items-center mt-20">
@@ -28,13 +57,9 @@ export default function Home(props: { dev: any }) {
               />
             </div>
             <h1
-              className="text-center text-6xl max-sm:text-5xl font-bold text-transparent bg-clip-text"
-              style={{
-                backgroundImage:
-                  "linear-gradient(120.9deg,hsla(0,0%,100%,0) 36.54%,hsla(0,0%,100%,.5) 47.09%,hsla(0,0%,100%,0) 56.65%),linear-gradient(84.79deg,#f4d0ff 27.33%,#ba7dc5 47.55%,#dcdfff 66.08%)",
-              }}
+              className="bg-top-gradient text-center text-6xl max-sm:text-5xl font-bold text-transparent bg-clip-text"
             >
-              Grow your open-source library
+              {notion.title[0].plain_text}
             </h1>
             <div>
               <img
@@ -44,15 +69,15 @@ export default function Home(props: { dev: any }) {
             </div>
           </div>
           <h2 className="text-center mt-10 text-2xl max-sm:text-xl">
-            Buy articles that will make you trending on GitHub
+            {notion.sub_title[0].plain_text}
           </h2>
           <div className="relative z-50 flex">
-            <button className="mr-5 text-black p-5 max-sm:p-2 rounded-3xl mt-10 bg-[#FDCA00] text-xl max-sm:text-lg hover:bg-[#fde9a7] hover:drop-shadow-aura transition-all">
-              Learn the process
-            </button>
-            <button className="text-black p-5 max-sm:p-2 rounded-3xl mt-10 bg-[#9966FF] text-xl max-sm:text-lg hover:bg-[#BB99FF] hover:drop-shadow-aura transition-all">
-              Check Packages
-            </button>
+            <Link href="/#process" className="mr-5 text-black p-5 max-sm:p-2 rounded-3xl mt-10 bg-[#FDCA00] text-xl max-sm:text-lg hover:bg-[#fde9a7] hover:drop-shadow-aura transition-all">
+              {notion.call_to_action[0].plain_text}
+            </Link>
+            <Link href="/#packages" className="text-black p-5 max-sm:p-2 rounded-3xl mt-10 bg-[#9966FF] text-xl max-sm:text-lg hover:bg-[#BB99FF] hover:drop-shadow-aura transition-all">
+              {notion.call_to_action_2[0].plain_text}
+            </Link>
           </div>
           <DevComponent dev={dev} />
         </div>
@@ -66,22 +91,26 @@ export default function Home(props: { dev: any }) {
           />
         </div>
       </div>
-      <ProcessComponent />
-      <ResourcesComponent />
+      <ProcessComponent process={process} />
+      <ResourcesComponent resources={resources} />
       <PackagesComponent />
       <div className="mt-28">
         <h1 className="text-center text-6xl max-sm:text-5xl font-bold">FAQ</h1>
-        <FaqComponent />
+        <FaqComponent faq={faq} />
       </div>
     </div>
   );
 }
 
 export const getStaticProps = async () => {
+  const faq = await getFaq();
   const dev = await loadDevToAnalytics();
+  const notion = await notionDbInformation();
   return {
     props: {
+      faq,
       dev,
+      notion,
     },
   };
 };

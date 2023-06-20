@@ -1,24 +1,37 @@
+import PurchaseComponent from "@growchief/components/purchase/purchase.component";
+import { modals } from "@mantine/modals";
+
 const PackagesComponent = () => {
   return (
-    <div className="mt-28">
+    <div className="mt-28" id="packages">
       <h1 className="text-center text-6xl max-sm:text-5xl font-bold">
         Packages
       </h1>
       <div className="flex sm:space-x-4 max-sm:space-y-4 max-sm:flex-col">
-        <div
-          className="flex-1 text-xl mt-14 rounded-xl border border-[#4E67E5]/25 bg-[#080C23] p-10 w-full colorb"
-          style={{
-            backgroundImage:
-              " radial-gradient(circle,rgba(77,102,229,.2) 0,transparent 70%),radial-gradient(circle,rgba(77,102,229,.1) 0,transparent 70%),radial-gradient(ellipse at center,hsla(0,0%,100%,.075) 0,transparent 100%)",
-          }}
-        >
+        <div className="bg-grad-blue flex-1 text-xl mt-14 rounded-xl border border-[#4E67E5]/25 bg-[#080C23] p-10 w-full colorb">
           <div className="text-[#4d66e5]">Community</div>
           <div className="text-6xl my-5 font-light">$600</div>
           <div>
             One of our top community members will write an article about your
             product
           </div>
-          <button className="my-5 w-full text-black p-5 max-sm:p-2 rounded-3xl bg-[#4E67E5] text-xl max-sm:text-lg hover:bg-[#8a9dfc] hover:drop-shadow-aura transition-all">
+          <button
+            onClick={() =>
+              modals.open({
+                size: "xl",
+                title: "Packages",
+                classNames: {
+                  body: "",
+                  header:
+                    "drop-shadow-aura bg-grad-blue bg-[#080C23] colorb text-white",
+                  content:
+                    "drop-shadow-aura bg-grad-blue bg-[#080C23] colorb text-white",
+                },
+                children: <PurchaseComponent initial="community" />,
+              })
+            }
+            className="my-5 w-full text-black p-5 max-sm:p-2 rounded-3xl bg-[#4E67E5] text-xl max-sm:text-lg hover:bg-[#8a9dfc] hover:drop-shadow-aura transition-all"
+          >
             Purchase
           </button>
           <ul>
@@ -38,7 +51,23 @@ const PackagesComponent = () => {
           <div>
             You provide an article that will be posted on Nevo David{"'"}s feed
           </div>
-          <button className="my-5 w-full text-black p-5 max-sm:p-2 rounded-3xl bg-[#9966FF] text-xl max-sm:text-lg hover:bg-[#BB99FF] hover:drop-shadow-aura transition-all">
+          <button
+            onClick={() =>
+              modals.open({
+                size: "xl",
+                title: "Packages",
+                classNames: {
+                  body: "",
+                  header:
+                    "drop-shadow-aura bg-grad-blue bg-[#080C23] colorb text-white",
+                  content:
+                    "drop-shadow-aura bg-grad-blue bg-[#080C23] colorb text-white",
+                },
+                children: <PurchaseComponent initial="growth" />,
+              })
+            }
+            className="my-5 w-full text-black p-5 max-sm:p-2 rounded-3xl bg-[#9966FF] text-xl max-sm:text-lg hover:bg-[#BB99FF] hover:drop-shadow-aura transition-all"
+          >
             Purchase
           </button>
           <ul>
@@ -59,7 +88,23 @@ const PackagesComponent = () => {
           <div>
             You provide an article that will be posted on Nevo David{"'"}s feed
           </div>
-          <button className="my-5 w-full text-black p-5 max-sm:p-2 rounded-3xl bg-[#F7E16F] text-xl max-sm:text-lg hover:bg-[#fdf2bb] hover:drop-shadow-aura transition-all">
+          <button
+            onClick={() =>
+              modals.open({
+                size: "xl",
+                title: "Packages",
+                classNames: {
+                  body: "",
+                  header:
+                    "drop-shadow-aura bg-grad-blue bg-[#080C23] colorb text-white",
+                  content:
+                    "drop-shadow-aura bg-grad-blue bg-[#080C23] colorb text-white",
+                },
+                children: <PurchaseComponent initial="growthforyou" />,
+              })
+            }
+            className="my-5 w-full text-black p-5 max-sm:p-2 rounded-3xl bg-[#F7E16F] text-xl max-sm:text-lg hover:bg-[#fdf2bb] hover:drop-shadow-aura transition-all"
+          >
             Purchase
           </button>
           <ul>
