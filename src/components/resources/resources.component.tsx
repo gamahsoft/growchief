@@ -1,7 +1,7 @@
 import { FC, ReactElement } from "react";
 
-const ResourcesComponent: FC<{ resources: ReactElement[] }> = (props) => {
-  const { resources } = props;
+const ResourcesComponent: FC<{ resources: ReactElement[], title: string }> = (props) => {
+  const { title, resources } = props;
   return (
     <div>
       <div className="flex max-sm:flex-col-reverse mt-28">
@@ -10,7 +10,7 @@ const ResourcesComponent: FC<{ resources: ReactElement[] }> = (props) => {
         </div>
         <div>
           <h1 className="text-6xl font-bold bg-clip-text relative z-20 max-sm:text-5xl max-sm:text-center">
-            Resources
+            {title}
           </h1>
           <ol className="space-y-6 mt-10 flex-1">
             {resources.map((current, index) => (
