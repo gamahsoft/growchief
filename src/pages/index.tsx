@@ -6,11 +6,12 @@ import ProcessComponent from "@growchief/components/process/process.component";
 import ResourcesComponent from "@growchief/components/resources/resources.component";
 import PackagesComponent from "@growchief/components/packages/packages.component";
 import { loadDevToAnalytics } from "@growchief/helpers/dev.to";
-import {getFaq, notionDbInformation} from "@growchief/helpers/notion";
+import { getFaq, notionDbInformation } from "@growchief/helpers/notion";
 import { useMemo } from "react";
 import Link from "next/link";
-export default function Home(props: { dev: any; notion: any, faq: any }) {
-  const { dev, notion, faq } = props;
+import {NextSeo} from "next-seo";
+export default function Home(props: { dev: any; notion: any; faq: any, url: string }) {
+  const { dev, notion, faq, url } = props;
 
   const process = useMemo(() => {
     return notion.process[0].plain_text.split("\n").filter((f: any) => f);
@@ -42,63 +43,102 @@ export default function Home(props: { dev: any; notion: any, faq: any }) {
   }, []);
 
   return (
-    <div className="mx-auto max-w-[1492px] px-10 flex flex-col w-full">
-      <div className="flex flex-col min-h-[100vh] w-full py-4 pb-16">
-        <div className="flex">
-          <Link href="/" className="text-2xl flex-1 bg-top-gradient text-transparent bg-clip-text">GrowChief</Link>
-          <StarComponent />
-        </div>
-        <div className="flex flex-1 flex-col justify-center items-center mt-20">
+    <>
+      <NextSeo
+        title="GrowChief"
+        description={`${notion.title[0].plain_text} - ${notion.sub_title[0].plain_text}`}
+        canonical={url}
+        openGraph={{
+          url: "https://www.url.ie/a",
+          title: "GrowChief",
+          description: `${notion.title[0].plain_text} - ${notion.sub_title[0].plain_text}`,
+          images: [
+            {
+              url: `${url}/og-new.png`,
+              width: 800,
+              height: 600,
+              alt: "GrowChief",
+              type: "image/png",
+            },
+          ],
+          siteName: "GrowChief",
+        }}
+      />
+      <div className="mx-auto max-w-[1492px] px-10 flex flex-col w-full">
+        <div className="flex flex-col min-h-[100vh] w-full py-4 pb-16">
           <div className="flex">
-            <div>
-              <img
-                src="/star-icon.svg"
-                className="w-[50px] h-[50px] mr-5 max-sm:hidden"
-              />
-            </div>
-            <h1
-              className="bg-top-gradient text-center text-6xl max-sm:text-5xl font-bold text-transparent bg-clip-text"
+            <Link
+              href="/"
+              className="text-2xl flex-1 bg-top-gradient text-transparent bg-clip-text"
             >
-              {notion.title[0].plain_text}
-            </h1>
-            <div>
-              <img
-                src="/star-icon.svg"
-                className="w-[50px] h-[50px] ml-5 max-sm:hidden"
-              />
+              GrowChief
+            </Link>
+            <StarComponent />
+          </div>
+          <div className="flex flex-1 flex-col justify-center items-center mt-20">
+            <div className="flex">
+              <div>
+                <img
+                  src="/star-icon.svg"
+                  className="w-[50px] h-[50px] mr-5 max-sm:hidden"
+                />
+              </div>
+              <h1 className="bg-top-gradient text-center text-6xl max-sm:text-5xl font-bold text-transparent bg-clip-text">
+                {notion.title[0].plain_text}
+              </h1>
+              <div>
+                <img
+                  src="/star-icon.svg"
+                  className="w-[50px] h-[50px] ml-5 max-sm:hidden"
+                />
+              </div>
             </div>
+            <h2 className="text-center mt-10 text-2xl max-sm:text-xl">
+              {notion.sub_title[0].plain_text}
+            </h2>
+            <div className="relative z-50 flex">
+              <Link
+                href="/#process"
+                className="mr-5 text-black p-5 max-sm:p-2 rounded-3xl mt-10 bg-[#FDCA00] text-xl max-sm:text-lg hover:bg-[#fde9a7] hover:drop-shadow-aura transition-all"
+              >
+                {notion.call_to_action[0].plain_text}
+              </Link>
+              <Link
+                href="/#packages"
+                className="text-black p-5 max-sm:p-2 rounded-3xl mt-10 bg-[#9966FF] text-xl max-sm:text-lg hover:bg-[#BB99FF] hover:drop-shadow-aura transition-all"
+              >
+                {notion.call_to_action_2[0].plain_text}
+              </Link>
+            </div>
+            <DevComponent dev={dev} />
           </div>
-          <h2 className="text-center mt-10 text-2xl max-sm:text-xl">
-            {notion.sub_title[0].plain_text}
-          </h2>
-          <div className="relative z-50 flex">
-            <Link href="/#process" className="mr-5 text-black p-5 max-sm:p-2 rounded-3xl mt-10 bg-[#FDCA00] text-xl max-sm:text-lg hover:bg-[#fde9a7] hover:drop-shadow-aura transition-all">
-              {notion.call_to_action[0].plain_text}
-            </Link>
-            <Link href="/#packages" className="text-black p-5 max-sm:p-2 rounded-3xl mt-10 bg-[#9966FF] text-xl max-sm:text-lg hover:bg-[#BB99FF] hover:drop-shadow-aura transition-all">
-              {notion.call_to_action_2[0].plain_text}
-            </Link>
+          <div className="pointer-events-none absolute left-0 top-0 w-full h-[1079px] overflow-hidden">
+            <div
+              className="pointer-events-none -z-20 absolute -top-[348px] left-[50%] -translate-x-[50%] w-[1079px] h-[1079px] opacity-20"
+              style={{
+                backgroundImage:
+                  "radial-gradient(circle,#96f 0,rgba(14,10,15,0) 70%)",
+              }}
+            />
           </div>
-          <DevComponent dev={dev} />
         </div>
-        <div className="pointer-events-none absolute left-0 top-0 w-full h-[1079px] overflow-hidden">
-          <div
-            className="pointer-events-none -z-20 absolute -top-[348px] left-[50%] -translate-x-[50%] w-[1079px] h-[1079px] opacity-20"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle,#96f 0,rgba(14,10,15,0) 70%)",
-            }}
-          />
+        <ProcessComponent
+          process={process}
+          title={notion.process_title[0].plain_text}
+        />
+        <ResourcesComponent
+          resources={resources}
+          title={notion.resources_title[0].plain_text}
+        />
+        <PackagesComponent />
+        <div className="mt-28 mb-28">
+          <h1 className="text-center text-6xl max-sm:text-5xl font-bold">
+            FAQ
+          </h1>
+          <FaqComponent faq={faq} />
         </div>
       </div>
-      <ProcessComponent process={process} title={notion.process_title[0].plain_text} />
-      <ResourcesComponent resources={resources} title={notion.resources_title[0].plain_text} />
-      <PackagesComponent />
-      <div className="mt-28 mb-28">
-        <h1 className="text-center text-6xl max-sm:text-5xl font-bold">FAQ</h1>
-        <FaqComponent faq={faq} />
-      </div>
-    </div>
+    </>
   );
 }
 
@@ -109,6 +149,7 @@ export const getStaticProps = async () => {
   return {
     revalidate: 86400,
     props: {
+      url: process.env.WEBSITE_URL,
       faq,
       dev,
       notion,

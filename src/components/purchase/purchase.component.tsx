@@ -134,7 +134,7 @@ function Cell(props: {
 
 const PurchaseComponent: FC<{ initial: OptionsType }> = (props) => {
   const [option, setOption] = useState(props.initial as OptionsType);
-  const [usedDates, setUsedDates] = useState<string[]>([]);
+  const [usedDates, setUsedDates] = useState<string[] | undefined>(undefined);
   const [programmingLanguage, setProgrammingLanguage] =
     useState<OptionsProgramming>("javascript");
 
@@ -177,6 +177,14 @@ const PurchaseComponent: FC<{ initial: OptionsType }> = (props) => {
         return moment().add(2, "weeks").toDate();
     }
   }, [option]);
+
+  if (!usedDates) {
+    return (
+      <div className="p-10 w-full h-full flex justify-center items-center">
+        <ReactLoading type="spin" color="#F7E16F" height={100} width={100} />
+      </div>
+    );
+  }
   return (
     <div className="pt-4">
       <div className="flex mb-5">
