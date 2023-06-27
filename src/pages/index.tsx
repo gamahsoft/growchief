@@ -65,7 +65,7 @@ export default function Home(props: { dev: any; notion: any; faq: any, url: stri
         }}
       />
       <div className="mx-auto max-w-[1492px] px-10 flex flex-col w-full">
-        <div className="flex flex-col min-h-[100vh] w-full py-4 pb-16">
+        <div className="flex flex-col sm:min-h-[100vh] w-full py-4 pb-16">
           <div className="flex">
             <Link
               href="/"
@@ -99,13 +99,13 @@ export default function Home(props: { dev: any; notion: any; faq: any, url: stri
             <div className="relative z-50 flex">
               <Link
                 href="/#process"
-                className="mr-5 text-black p-5 max-sm:p-2 rounded-3xl mt-10 bg-[#FDCA00] text-xl max-sm:text-lg hover:bg-[#fde9a7] hover:drop-shadow-aura transition-all"
+                className="mr-5 whitespace-nowrap flex items-center justify-center text-black p-5 max-sm:p-2 rounded-3xl mt-10 bg-[#FDCA00] text-xl max-sm:text-lg hover:bg-[#fde9a7] hover:drop-shadow-aura transition-all"
               >
                 {notion.call_to_action[0].plain_text}
               </Link>
               <Link
                 href="/#packages"
-                className="text-black p-5 max-sm:p-2 rounded-3xl mt-10 bg-[#9966FF] text-xl max-sm:text-lg hover:bg-[#BB99FF] hover:drop-shadow-aura transition-all"
+                className="text-black p-5 flex items-center justify-center whitespace-nowrap max-sm:p-2 rounded-3xl mt-10 bg-[#9966FF] text-xl max-sm:text-lg hover:bg-[#BB99FF] hover:drop-shadow-aura transition-all"
               >
                 {notion.call_to_action_2[0].plain_text}
               </Link>

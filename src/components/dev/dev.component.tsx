@@ -21,7 +21,7 @@ const DevComponent: FC<{
   return (
     <>
       <div
-        className="text-center flex-1 text-xl mt-14 rounded-xl border border-[#9966FF]/25 bg-[#120d1d] w-full colorb drop-shadow-aura relative overflow-x-hidden overflow-y-auto container"
+        className="text-center sm:flex-1 max-sm:h-[400px] text-xl mt-14 rounded-xl border border-[#9966FF]/25 bg-[#120d1d] w-full colorb drop-shadow-aura relative overflow-x-hidden overflow-y-auto container"
         style={{
           backgroundImage:
             "radial-gradient(circle,rgba(150,102,255,.2) 0,transparent 70%),radial-gradient(circle,rgba(150,102,255,.1) 0,transparent 70%),radial-gradient(ellipse at center,hsla(0,0%,100%,.075) 0,transparent 100%)",
