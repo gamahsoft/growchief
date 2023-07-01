@@ -19,3 +19,7 @@ What can you find here:
 
 - copy `.env.example` to `.env` and add the missing variables.
 - Run `npm run dev`
+
+## Please help me out by starring this repository
+
+![starit](https://user-images.githubusercontent.com/100117126/226560726-9e6b5b7d-b881-4a3c-90e5-a190c5433866.gif)
