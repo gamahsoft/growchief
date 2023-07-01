@@ -130,7 +130,7 @@ export default function Home(props: { dev: any; notion: any; faq: any, url: stri
           resources={resources}
           title={notion.resources_title[0].plain_text}
         />
-        <PackagesComponent />
+        <PackagesComponent type="call" />
         <div className="mt-28 mb-28">
           <h1 className="text-center text-6xl max-sm:text-5xl font-bold">
             FAQ

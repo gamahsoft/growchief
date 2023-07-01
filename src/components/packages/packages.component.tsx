@@ -1,7 +1,16 @@
 import PurchaseComponent from "@growchief/components/purchase/purchase.component";
 import { modals } from "@mantine/modals";
+import { FC, useCallback } from "react";
 
-const PackagesComponent = () => {
+const PackagesComponent: FC<{ type: "purchase" | "call" }> = (props) => {
+  const { type } = props;
+  const call = useCallback(
+    (type: "Growth" | "Growth for you") => () => {
+      window.location.href = process.env.CALENDAR_LINK + "?a1=" + type;
+    },
+    []
+  );
+
   return (
     <div className="mt-28" id="packages">
       <h1 className="text-center text-6xl max-sm:text-5xl font-bold">
@@ -52,7 +61,7 @@ const PackagesComponent = () => {
             You provide an article that will be posted on Nevo David{"'"}s feed
           </div>
           <button
-            onClick={() =>
+            onClick={type === 'call' ? call('Growth') : () =>
               modals.open({
                 size: "xl",
                 title: "Packages",
@@ -68,7 +77,7 @@ const PackagesComponent = () => {
             }
             className="my-5 w-full text-black p-5 max-sm:p-2 rounded-3xl bg-[#9966FF] text-xl max-sm:text-lg hover:bg-[#BB99FF] hover:drop-shadow-aura transition-all"
           >
-            Purchase
+            {type === "call" ? "Schedule a meeting" : "Purchase"}
           </button>
           <ul>
             <li>Editorial by our team</li>
@@ -89,7 +98,7 @@ const PackagesComponent = () => {
             You provide an article that will be posted on Nevo David{"'"}s feed
           </div>
           <button
-            onClick={() =>
+            onClick={type === 'call' ? call('Growth for you') : () =>
               modals.open({
                 size: "xl",
                 title: "Packages",
@@ -105,7 +114,7 @@ const PackagesComponent = () => {
             }
             className="my-5 w-full text-black p-5 max-sm:p-2 rounded-3xl bg-[#F7E16F] text-xl max-sm:text-lg hover:bg-[#fdf2bb] hover:drop-shadow-aura transition-all"
           >
-            Purchase
+            {type === "call" ? "Schedule a meeting" : "Purchase"}
           </button>
           <ul>
             <li>We make the article</li>
