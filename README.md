@@ -7,7 +7,12 @@
   </a>
 </p>
 
-<p align="center">Buy articles that will make you trend on GitHub</p>
+<p align="center">Build a pricing page with pricing tiers and charge customers</p>
+
+<p align="center">
+  <img src="https://github.com/github-20k/growchief/assets/100117126/f0661e9c-2573-40d4-a6ba-1ba14d4123bd" align="center" />
+</p>
+
 
 ## GrowChief
 
